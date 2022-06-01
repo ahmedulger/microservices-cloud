@@ -2,5 +2,5 @@ server.port: 8888
 spring:
   application.name: config-server
   cloud.config.server.git:
-    uri: file:///C:/Users/a-ulg/developing-env/repositories/spring-cloud/config-repo
+    uri: file:///C:/Users/a-ulg/developing-env/repositories/config-repo
     searchPaths: '{application}'
