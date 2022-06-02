@@ -1,5 +1,0 @@
-server.port: 8080
-spring:
-  application.name: client-app
-  config:
-    import: "configserver:http://localhost:8888"
