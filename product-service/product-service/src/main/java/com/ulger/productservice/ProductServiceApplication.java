@@ -1,12 +1,12 @@
-package com.ulger.cloud.configserver;
+package com.ulger.productservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ConfigServerApplication {
+public class ProductServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ConfigServerApplication.class, args);
+		SpringApplication.run(ProductServiceApplication.class, args);
 	}
 }
