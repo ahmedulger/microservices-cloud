@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @Value("${app.name}")
+    @Value("${test.greeting}")
     private String test;
 
     @RequestMapping("/greeting")
