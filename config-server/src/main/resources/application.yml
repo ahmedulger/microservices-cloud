@@ -5,3 +5,8 @@ spring:
     uri: file://Users/ahulger/dev-env/repositories/me/microservices-cloud/config-repo
     searchPaths: '{application}'
     default-label: master
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
