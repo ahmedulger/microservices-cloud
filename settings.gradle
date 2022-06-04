@@ -1,0 +1,6 @@
+rootProject.name = 'basic-multiproject'
+include 'apigw'
+include 'config-service'
+include 'eureka-server'
+include 'order-service'
+include 'product-service'
