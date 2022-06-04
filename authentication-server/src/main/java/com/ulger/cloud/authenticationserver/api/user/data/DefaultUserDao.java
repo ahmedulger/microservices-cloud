@@ -20,6 +20,6 @@ public class DefaultUserDao implements UserDao {
 
     @Override
     public User insert(User user) {
-        return userRepository.save(user);
+        return null;
     }
 }
