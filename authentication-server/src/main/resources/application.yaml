@@ -3,3 +3,12 @@ spring:
   application.name: authentication-server
   config:
     import: "configserver:http://localhost:8888"
+  datasource:
+    authentication-manager:
+      url: jdbc:postgresql://localhost:5432/authentication-manager
+      username: admin
+      password: asd123
+      driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
