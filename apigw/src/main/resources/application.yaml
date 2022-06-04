@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: apigw
+  config:
+    import: "configserver:http://localhost:8888"
   cloud:
     gateway:
       routes:
