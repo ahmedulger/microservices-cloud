@@ -6,17 +6,6 @@ spring:
     name: apigw
   config:
     import: "configserver:http://localhost:8888"
-  cloud:
-    gateway:
-      routes:
-        - id: productService
-          uri: lb://product-service
-          predicates:
-            - Path=/product/**
-        - id: orderService
-          uri: lb://order-service
-          predicates:
-            - Path=/order/**
 
 eureka:
   client:
