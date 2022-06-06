@@ -26,9 +26,7 @@ public class TokenServiceConfiguration {
 
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey(privateKey);
-        return converter;
+        return new JwtAccessTokenConverter();
     }
 
     @Bean

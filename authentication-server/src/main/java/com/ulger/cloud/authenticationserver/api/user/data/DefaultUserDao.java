@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class DefaultUserDao implements UserDao {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public DefaultUserDao(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -15,7 +15,7 @@ public class DefaultUserDao implements UserDao {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findByEmail(email).map(userEntity -> userEntity);
     }
 
     @Override

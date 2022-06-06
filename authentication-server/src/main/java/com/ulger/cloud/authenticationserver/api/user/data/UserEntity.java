@@ -1,9 +1,9 @@
 package com.ulger.cloud.authenticationserver.api.user.data;
 
-import com.sun.istack.NotNull;
 import com.ulger.usermanager.api.User;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users", indexes = @Index(name = "idx_1_unq_email", unique = true, columnList = "email"))
@@ -24,18 +24,14 @@ public class UserEntity implements User {
     @Column(name="pwd_hash", nullable = false)
     private String pwdHash;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles;
+
     public UserEntity() {
-    }
-
-    public UserEntity(@NotNull String email, @NotNull String displayName, @NotNull String pwdHash) {
-        this.email = email;
-        this.displayName = displayName;
-        this.pwdHash = pwdHash;
-    }
-
-    public UserEntity(Long id, @NotNull String email, @NotNull String displayName, @NotNull String pwdHash) {
-        this(email, displayName, pwdHash);
-        this.id = id;
     }
 
     @Override
@@ -56,5 +52,9 @@ public class UserEntity implements User {
     @Override
     public String getCredential() {
         return pwdHash;
+    }
+
+    public Set<RoleEntity> getRoles() {
+        return roles;
     }
 }

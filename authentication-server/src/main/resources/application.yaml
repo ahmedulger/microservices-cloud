@@ -4,14 +4,6 @@ spring:
   application.name: authentication-server
   config:
     import: "configserver:http://localhost:8888"
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-
-app:
-  security:
-    jwt:
-      private-key: asd123
 
 logging:
   level:
