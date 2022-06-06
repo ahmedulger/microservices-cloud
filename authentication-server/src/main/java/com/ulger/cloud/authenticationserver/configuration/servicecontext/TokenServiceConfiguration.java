@@ -15,7 +15,6 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class TokenServiceConfiguration {
 
     private String privateKey;
-    private String publicKey;
 
     public String getPrivateKey() {
         return privateKey;
@@ -23,14 +22,6 @@ public class TokenServiceConfiguration {
 
     public void setPrivateKey(String privateKey) {
         this.privateKey = privateKey;
-    }
-
-    public String getPublicKey() {
-        return publicKey;
-    }
-
-    public void setPublicKey(String publicKey) {
-        this.publicKey = publicKey;
     }
 
     @Bean

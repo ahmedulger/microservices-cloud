@@ -12,7 +12,6 @@ app:
   security:
     jwt:
       private-key: asd123
-      public-key: '-----BEGIN PUBLIC KEY-----\ntadadada\n-----END PUBLIC KEY-----'
 
 logging:
   level:
