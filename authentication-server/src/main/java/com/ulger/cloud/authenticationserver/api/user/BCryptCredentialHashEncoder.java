@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BCryptCredentialHashEncoder implements CredentialEncoder {
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public BCryptCredentialHashEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {

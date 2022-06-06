@@ -1,7 +1,8 @@
-package com.ulger.cloud.authenticationserver.configuration;
+package com.ulger.cloud.authenticationserver.configuration.servicecontext;
 
 import com.ulger.cloud.authenticationserver.api.user.data.DefaultUserDao;
 import com.ulger.cloud.authenticationserver.api.user.data.UserRepository;
+import com.ulger.cloud.authenticationserver.authentication.DefaultUserDetailsService;
 import com.ulger.usermanager.api.CredentialEncoder;
 import com.ulger.usermanager.api.DefaultUserManager;
 import com.ulger.usermanager.api.UserManager;
@@ -11,14 +12,21 @@ import com.ulger.usermanager.api.validation.DefaultUserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
-public class ServiceConfiguration {
+public class CoreServiceConfiguration {
+
+    private final UserRepository userRepository;
+
+    @Autowired
+    public CoreServiceConfiguration(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Bean
-    @Autowired
-    public UserDao userDao(UserRepository userRepository) {
+    public UserDao userDao() {
         return new DefaultUserDao(userRepository);
     }
 
@@ -31,5 +39,10 @@ public class ServiceConfiguration {
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new DefaultUserDetailsService(userDao());
     }
 }

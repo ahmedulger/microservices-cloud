@@ -20,9 +20,15 @@ ext {
 dependencies {
 	implementation 'com.ulger.usermanager:api:1.0'
 	implementation 'com.ulger.usermanager:core:1.0'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.6.6'
+
+	implementation 'org.apache.commons:commons-lang3:3.12.0'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
 	runtimeOnly 'org.postgresql:postgresql'
 
