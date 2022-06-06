@@ -46,7 +46,9 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 .withClient("order-service")
                 .secret(passwordEncoder.encode("pwd-order-service"))
                 .scopes("read", "write")
-                .authorizedGrantTypes("password", "refresh_token")
+                .authorizedGrantTypes("authorization_code", "password", "refresh_token")
+                .redirectUris("http://localhost:8082/oauth/authorized")
+                .autoApprove(true)
                 .accessTokenValiditySeconds(200000)
                 .refreshTokenValiditySeconds(200000);
     }
