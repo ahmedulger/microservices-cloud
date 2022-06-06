@@ -43,6 +43,6 @@ public class CoreServiceConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new DefaultUserDetailsService(userDao());
+        return new DefaultUserDetailsService(userRepository);
     }
 }
