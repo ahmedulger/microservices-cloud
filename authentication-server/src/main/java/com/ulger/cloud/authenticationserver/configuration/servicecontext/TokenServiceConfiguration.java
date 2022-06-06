@@ -5,13 +5,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @ConfigurationProperties(prefix = "app.security.jwt")
-public class JWTServiceConfiguration {
+public class TokenServiceConfiguration {
 
     private String privateKey;
     private String publicKey;
@@ -33,7 +34,7 @@ public class JWTServiceConfiguration {
     }
 
     @Bean
-    public JwtAccessTokenConverter tokenEnhancer() {
+    public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey(privateKey);
         return converter;
@@ -41,12 +42,12 @@ public class JWTServiceConfiguration {
 
     @Bean
     public TokenStore tokenStore() {
-        return new JwtTokenStore(tokenEnhancer());
+        return new JwtTokenStore(accessTokenConverter());
     }
 
     @Bean
     @Primary
-    public DefaultTokenServices tokenServices() {
+    public ResourceServerTokenServices tokenServices() {
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setTokenStore(tokenStore());
         defaultTokenServices.setSupportRefreshToken(true);

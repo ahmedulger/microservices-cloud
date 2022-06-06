@@ -8,26 +8,35 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
 @Configuration
 @EnableAuthorizationServer
-public class AuthenticationServerConfiguration extends AuthorizationServerConfigurerAdapter {
+public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    private AuthenticationManager authenticationManager;
-    private TokenStore tokenStore;
-    private PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final TokenStore tokenStore;
+    private final PasswordEncoder passwordEncoder;
+    private final AccessTokenConverter accessTokenConverter;
 
-    public AuthenticationServerConfiguration(AuthenticationManager authenticationManager, TokenStore tokenStore, PasswordEncoder passwordEncoder) {
+    public OAuth2AuthorizationServerConfig(
+            AuthenticationManager authenticationManager,
+            TokenStore tokenStore,
+            PasswordEncoder passwordEncoder,
+            AccessTokenConverter accessTokenConverter) {
+
         this.authenticationManager = authenticationManager;
         this.tokenStore = tokenStore;
         this.passwordEncoder = passwordEncoder;
+        this.accessTokenConverter = accessTokenConverter;
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
                 .tokenStore(tokenStore)
+                .accessTokenConverter(accessTokenConverter)
                 .authenticationManager(authenticationManager);
     }
 

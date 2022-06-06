@@ -6,19 +6,25 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
+public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    private TokenStore tokenStore;
-    private AuthenticationSuccessHandler authenticationSuccessHandler;
+    private final TokenStore tokenStore;
+    private final AuthenticationSuccessHandler authenticationSuccessHandler;
+    private final ResourceServerTokenServices resourceServerTokenServices;
 
-    public ResourceServerConfiguration(TokenStore tokenStore, AuthenticationSuccessHandler authenticationSuccessHandler) {
+    public OAuth2ResourceServerConfig(
+            TokenStore tokenStore,
+            AuthenticationSuccessHandler authenticationSuccessHandler,
+            ResourceServerTokenServices resourceServerTokenServices) {
         this.tokenStore = tokenStore;
         this.authenticationSuccessHandler = authenticationSuccessHandler;
+        this.resourceServerTokenServices = resourceServerTokenServices;
     }
 
     @Override
@@ -47,6 +53,6 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
-        resources.tokenStore(tokenStore);
+        resources.tokenStore(tokenStore).tokenServices(resourceServerTokenServices);
     }
 }
