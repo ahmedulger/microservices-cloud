@@ -2,6 +2,6 @@ server.port: 8888
 spring:
   application.name: config-server
   cloud.config.server.git:
-    uri: file://Users/ahulger/dev-env/repositories/me/config-repo
+    uri: file://Users/ahulger/dev-env/repositories/me/guava/config-repo
     searchPaths: '{application}'
     default-label: master
